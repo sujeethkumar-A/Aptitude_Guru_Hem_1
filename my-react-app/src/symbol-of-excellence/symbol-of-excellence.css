@@ -1,0 +1,81 @@
+.symbol-child-1 {
+  max-width: 820px;
+  margin: 0 auto 50px auto; /* Centers the block horizontally and adds space below */
+  text-align: center;       /* Centers both the h1 and p text inside */
+  padding: 0 20px;
+  
+}
+
+.symbol-child-1-1 {
+  margin-bottom: 16px;
+
+}
+
+.symbol-child-1-2 {
+  line-height: 1.6;
+  color: #666666
+}
+.vision-mision-container{
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+  @media (max-width: 750px) 
+   {
+    flex-direction: column;
+  }
+}
+.symbol-child-2 {
+  flex: 1; 
+  padding-right: 32px;
+  border-right: 1px solid #000000;
+}
+.symbol-child-3{
+  flex: 1; 
+  padding-left: 32px;
+}
+.symbol-child-2-1 {
+  color: yellow; /* <-- Missing semicolon was here */
+  border-left: 4px solid yellow;
+  padding-left: 12px;
+  margin-bottom: 12px;
+}
+
+.symbol-child-3-1 {
+  color: blue;
+  border-left: 4px solid blue; /* Matches the vertical accent bar */
+  padding-left: 12px;
+  margin-bottom: 12px;
+}
+.symbol-child-4 {
+  background-color: #e60000; /* Red background */
+  color: #ffffff;            /* White text */
+  border-radius: 100px;       /* Curved corners */
+  text-align: center;        /* Centers the text inside */
+  max-width: 1100px;
+  margin: 10px auto;         
+  padding: 25px 24px 20px;        
+}
+
+.symbol-child-4-1  {
+  font-size: 1.75rem;
+  margin: 0 0 6px 0;
+  color: #ffffff;
+}
+
+.symbol-child-4-2  {
+  font-size: 1.00rem;
+  margin: 0 auto;
+  max-width: 900px;
+  line-height: 1.6;
+  color: #ffffff;
+}
+
+.symbol-child-2-2{
+color: #666666
+}
+.symbol-child-3-2{
+color: #666666
+}
