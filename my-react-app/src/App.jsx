@@ -6,6 +6,9 @@ import './App.css'
 import AptitudeGuruHeader from './aptitude-guru-header/aptitude-guru-header.jsx'
 import SymbolOfExcellence from "./symbol-of-excellence/symbol-of-excellence.jsx";
 import Image1 from './image-component/img1.jsx';
+import Courses from "./symbol-of-excellence/courses.jsx";
+ import CoursesSection from './CoursesSection/CoursesSection.jsx';
+
 function App() {
   const [count, setCount] = useState(0)
 
@@ -19,7 +22,8 @@ function App() {
       vision={"Our vision is to empower individuals from diverse backgrounds to become accomplished professionals. At Aptitude Guru Hem, we believe that knowledge has the power to transcend boundaries."}
       mission={"Our vision is to empower individuals from diverse backgrounds to become accomplished professionals. At Aptitude Guru Hem, we believe that knowledge has the power to transcend boundaries"}
       />
-     
+     <Courses />
+     <CoursesSection />
     </div>
 
     
