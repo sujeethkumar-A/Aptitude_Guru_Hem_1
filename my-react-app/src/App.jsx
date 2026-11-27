@@ -1,17 +1,20 @@
 import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
+// import heroImg from './assets/hero.png'
+// import reactLogo from './assets/react.svg'
+// import viteLogo from './assets/vite.svg'
 import './App.css'
 import AptitudeGuruHeader from './aptitude-guru-header/aptitude-guru-header.jsx'
 import SymbolOfExcellence from "./symbol-of-excellence/symbol-of-excellence.jsx";
 import Image1 from './image-component/img1.jsx';
 import Courses from "./symbol-of-excellence/courses.jsx";
  import CoursesSection from './CoursesSection/CoursesSection.jsx';
+  import { ToastContainer, toast } from 'react-toastify';
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  
+  const notify = () => {
+    toast("Wow so easy!");
+  };
   return (
     <div className="App">
       <AptitudeGuruHeader />
@@ -24,6 +27,11 @@ function App() {
       />
      <Courses />
      <CoursesSection />
+     <div>
+        <button onClick={notify}>Notify!</button>
+        <ToastContainer />
+      </div>
+      
     </div>
 
     

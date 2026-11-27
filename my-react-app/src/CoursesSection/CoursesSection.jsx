@@ -1,4 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
+import Select from "react-select";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 import "./CoursesSection.css";
 
 const courses = [
@@ -31,45 +38,94 @@ const courses = [
   },
 ];
 
+const filterOptions = [
+  { value: "all", label: "All Courses (3)" },
+  { value: "5 Days", label: "Duration: 5 Days" },
+  { value: "10 Days", label: "Duration: 10 Days" },
+];
+
 const CoursesSection = () => {
+  const [selectedFilter, setSelectedFilter] = useState(filterOptions[0]);
+
+  const filteredCourses = courses.filter((course) => {
+    if (!selectedFilter || selectedFilter.value === "all") {
+      return true;
+    }
+    return course.duration === selectedFilter.value;
+  });
+
   return (
     <section className="courses-wrapper">
-      <div className="courses-grid">
-        {courses.map((course) => (
-          <div className="course-card" key={course.id}>
-            <div className="course-img-box">
-              <img src={course.image} alt={course.title} />
-            </div>
-
-            <div className="course-stars" aria-label="5 out of 5 stars">
-              ★★★★★
-            </div>
-
-            <h3 className="course-title">{course.title}</h3>
-
-            <p className="course-meta">
-              Recommended: {course.recommended}
-              <br />
-              Duration: {course.duration}
-            </p>
-
-            <div className="course-price-row">
-              <span className="course-price">{course.price}</span>
-              <span className="course-gst">+ GST</span>
-              <span className="course-old-price">{course.originalPrice}</span>
-            </div>
-
-            <div className="course-actions">
-              <button type="button" className="btn-buy">
-                Buy Now
-              </button>
-              <button type="button" className="btn-know-more">
-                Know More
-              </button>
-            </div>
-          </div>
-        ))}
+      {/* Dropdown Bar above the Carousel */}
+      <div className="courses-filter-bar">
+        <label htmlFor="course-duration-filter" className="filter-label">
+          Filter Courses:
+        </label>
+        <div className="filter-dropdown-box">
+          <Select
+            inputId="course-duration-filter"
+            value={selectedFilter}
+            onChange={(option) => setSelectedFilter(option)}
+            options={filterOptions}
+            isSearchable={false}
+          />
+        </div>
       </div>
+
+      {/* Carousel renders the filtered courses */}
+     <Swiper
+  key={selectedFilter?.value || "all"}
+  modules={[Navigation, Pagination, Autoplay]}
+  spaceBetween={24}
+  slidesPerView={1}
+  navigation
+  pagination={{ clickable: true }}
+  autoplay={{ delay: 3000, disableOnInteraction: false }}
+  loop={filteredCourses.length > 1}
+  breakpoints={{
+    768: {
+      slidesPerView: filteredCourses.length === 1 ? "auto" : 2,
+    },
+  }}
+  className={`courses-swiper ${filteredCourses.length === 1 ? "single-slide" : ""}`}
+>
+        {filteredCourses.map((course) => (
+          <SwiperSlide key={course.id}>
+            <div className="course-card">
+              <div className="course-img-box">
+                <img src={course.image} alt={course.title} />
+              </div>
+
+              <div className="course-stars" aria-label="5 out of 5 stars">
+                ★★★★★
+              </div>
+
+              <h3 className="course-title">{course.title}</h3>
+
+              <p className="course-meta">
+                Recommended: {course.recommended}
+                <br />
+                Duration: {course.duration}
+              </p>
+
+              <div className="course-price-row">
+                <span className="course-price">{course.price}</span>
+                <span className="course-gst">+ GST</span>
+                <span className="course-old-price">{course.originalPrice}</span>
+              </div>
+
+              <div className="course-actions">
+                <button type="button" className="btn-buy">
+                  Buy Now
+                </button>
+                <button type="button" className="btn-know-more">
+                  Know More
+                </button>
+              </div>
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
 
       <div className="courses-view-more">
         <a href="#more-courses">View More &gt;</a>
